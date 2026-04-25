@@ -17,22 +17,28 @@ public class TeacherController {
         this.service = service;
     }
 
+    @GetMapping
+    public String list(Model model) {
+        model.addAttribute("teachers", service.findAll());
+        return "teachers/list";
+    }
+
     @GetMapping("/new")
     public String create(Model model) {
         model.addAttribute("teacher", new Teacher());
         return "teachers/form";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("teacher", service.findbyId(id));
-        return "teachers/form";
-    }
-
-    @GetMapping("/save")
-    public String save(Teacher teacher) {
+    @PostMapping("/save")
+    public String save(@ModelAttribute Teacher teacher) {
         service.save(teacher);
         return "redirect:/teachers";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        model.addAttribute("teacher", service.findById(id));
+        return "teachers/form";
     }
 
     @GetMapping("/delete/{id}")

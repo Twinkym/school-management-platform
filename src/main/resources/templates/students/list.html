@@ -6,31 +6,55 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Students</h1>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1>Students Management</h1>
 
     <a href="/students/new">Add New Student</a>
 
-    <table border="1">
+    <div th:if="${success}" class="alert alert-success">
+        <span th:text="${success}"></span>
+    </div>
+
+    <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>Code</th>
+                <th>Full Name</th>
                 <th>Email</th>
+                <th>Program</th>
+                <th>Level</th>
+                <th>Enrolled</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <!-- Aquí se iterarán los estudiantes -->
             <tr th:each="student : ${students}">
-                <td th:text="${student.id}"></td>
+                <td th:text="${student.studentCode}"></td>
                 <td th:text="${student.firstName + ' ' + student.lastName}"></td>
                 <td th:text="${student.email}"></td>
+                <td th:text="${student.program}"></td>
+                <td th:text="${student.academicLevel}"></td>
+                <td th:text="${student.enrolled != null and student.enrolled ? 'Yes' : 'No'}"></td>
                 <td>
-                    <a th:href="@{/students/edit/{id}(id=${student.id})}">Edit</a>
-                    <a th:href="@{/students/delete/{id}(id=${student.id})}" onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+                    <a th:href="@{/students/edit/{id}(id=${student.id})}">
+                        Edit
+                    </a>
+
+                    |
+
+                    <a th:href="@{/students/delete/{id}(id=${student.id})}" 
+                       onclick="return confirm('Are you sure you want to delete this student?')">
+                       Delete
+                    </a>
                 </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(students)}">
+                <td colspan="7" align="center">No students Registered.</td>
             </tr>
         </tbody>
     </table>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -5,6 +5,7 @@ import com.kdtech.gestion_escolar.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/students")
@@ -35,14 +36,22 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public String save(Student student) {
+    public String save(Student student, RedirectAttributes redirectAttributes) {
+        boolean isNew = (student.getId() == null);
+
         service.save(student);
+        if (isNew) {
+            redirectAttributes.addFlashAttribute("success", "Student created successfully.");
+        } else {
+            redirectAttributes.addFlashAttribute("success", "Student updated successfully.");
+        }
         return "redirect:/students";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         service.deleteById(id);
+        redirectAttributes.addFlashAttribute("success", "Student deleted successfully.");
         return "redirect:/students";
     }
 }

@@ -3,22 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Teachers Form</title>
 </head>
 <body>
-    <h1>Teacher Form</h1>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <h1 th:text="${teacher.id != null ? 'Edit Teacher' : 'Add Teacher'}"></h1>
 
-    <form action="/teachers/save" method="post" th:object="${teacher}">
+    <form th:action="@{/teachers/save}" method="post" th:object="${teacher}">
+
         <input type="hidden" th:field="*{id}">
-        <input type="text" th:field="*{firstName}" placeholder="First Name" required>
-        <br><br>
-        <input type="text" th:field="*{lastName}" placeholder="Last Name" required>
-        <br><br>
-        <input type="email" th:field="*{email}" placeholder="Email" required>
-        <br><br>
-        <button type="submit">Save</button>
+        <fieldset>
+            <legend>Identity</legend>
+
+            <label>Teacher Code</label><br>
+            <input type="text" th:field="*{teacherCode}" placeholder="Teacher Code" required><br><br>
+
+            <label>First Name</label><br>
+            <input type="text" th:field="*{firstName}" placeholder="First Name" required><br><br>
+        
+            <label>Last Name</label><br>
+            <input type="text" th:field="*{lastName}" placeholder="Last Name" required><br><br>
+
+            <label>Email</label><br>
+            <input type="email" th:field="*{email}" placeholder="Email" required><br><br>
+            
+            <label>Phone</label><br>
+            <input type="text" th:field="*{phone}" placeholder="Phone" required><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Personal Information</legend>
+
+            <label>Address</label><br>
+            <input type="text" th:field="*{address}" placeholder="Address" required><br><br>
+
+            <label>Birth Date</label><br>
+            <input type="date" th:field="*{dateOfBirth}" placeholder="Birth Date" required><br><br>
+
+            <label>Gender</label><br>
+            <select th:field="*{gender}" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+            </select><br><br>
+
+            <label>Nationality</label><br>
+            <input type="text" th:field="*{nationality}" placeholder="Nationality" required><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Academic Information</legend>
+
+            <label>Academic Level</label><br>
+            <select type="text" th:field="*{academicLevel}" placeholder="academicLevel" required>
+                <option value="">Select Academic Level</option>
+                <option value="Degree">Degree</option>
+                <option value="Master">Master</option>
+                <option value="Certification">Certification</option>
+                <option value="Bootcamp">Bootcamp</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+
+            <label>Department</label><br>
+            <input type="text" th:field="*{department}" placeholder="Department" required><br><br>
+
+            <label>Subject</label><br>
+            <input type="text" th:field="*{subject}" placeholder="Subject" required><br><br>
+
+            <label>Specialization</label><br>
+            <input type="text" th:field="*{specialization}" placeholder="Specialization" required><br><br>
+        </fieldset><br><br>
+
+        <fieldset>
+            <legend>Employment Information</legend>
+
+            <label>Hire Date</label><br>
+            <input type="date" th:field="*{hireDate}" placeholder="Hire Date" required><br><br>
+
+            <label>Salary</label><br>
+            <input type="number" th:field="*{salary}" placeholder="Salary" required><br><br>
+
+            <label>active</label><br>
+            <input type="checkbox" th:field="*{active}" placeholder="Active"><br><br>
+        </fieldset><br><br>
+
+        <fieldset>
+            <legend>Additional Information</legend>
+
+            <label>officeLocation</label><br>
+            <input type="text" th:field="*{officeLocation}" placeholder="Office Location" required><br><br>
+
+            <label>officeHours</label><br>
+            <input type="text" th:field="*{officeHours}" placeholder="Office Hours" required><br><br>
+
+            <label>profilePicture</label><br>
+            <input type="url" th:field="*{profilePictureUrl}" placeholder="Profile Picture" required><br><br>
+
+            <label>notes</label><br>
+            <input type="text" th:field="*{notes}" placeholder="Notes" required><br><br>
+        </fieldset>
+
+        <button type="submit">Save Teacher</button>
+        <a href="/teachers">Back to List</a>
     </form>
-    <br>
-    <a href="/teachers">Back to List</a>
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

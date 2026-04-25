@@ -30,7 +30,7 @@ public class TeacherService {
         return repository.save(teacher);
     }
 
-    public Teacher findbyId(Long id) {
+    public Teacher findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Teacher not found"));
     }
 

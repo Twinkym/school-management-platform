@@ -8,16 +8,17 @@ import jakarta.persistence.*;
 @Table(name = "teachers")
 public class Teacher {
 
+    // Identity
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    // Identity
     private Long id;
+    @Column(unique = true)
     private String teacherCode;
 
     // Personal Information
     private String firstName;
     private String lastName;
+    @Column(unique = true, nullable = false)
     private String email;
     private Integer phone;
     private String address;
@@ -28,6 +29,7 @@ public class Teacher {
     // Professional Information
     private String department;
     private String academicLevel;
+    private Boolean enrolled;
     private String subject;
     private String specialization;
 
@@ -153,6 +155,14 @@ public class Teacher {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    public Boolean getEnrolled() {
+        return enrolled;
+    }
+
+    public void setEnrolled(Boolean enrolled) {
+        this.enrolled = enrolled;
     }
 
     public LocalDate getHireDate() {
