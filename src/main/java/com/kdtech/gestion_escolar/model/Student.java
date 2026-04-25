@@ -2,6 +2,7 @@ package com.kdtech.gestion_escolar.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,16 +12,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "students")
 public class Student {
-    
+
+    // Identity
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Identity
     private Long id;
+    @Column(unique = true, nullable = false)
     private String studentCode;
 
     // Personal Information
     private String firstName;
     private String lastName;
+    @Column(unique = true, nullable = false)
     private String email;
     private String phone;
     private String address;
@@ -33,16 +36,17 @@ public class Student {
     private String program;
     private String specialization;
     private Boolean enrolled;
-    
+
     // Guardian Information
     private String guardianName;
-    private String guardianContact;
-    
+    private String guardianEmail;
+    private String guardianPhone;
+
     // Enrollment Information
     private Integer enrollmentNumber;
-    private LocalDate enrollmentDate;    
+    private LocalDate enrollmentDate;
 
-public Long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -162,12 +166,20 @@ public Long getId() {
         this.guardianName = guardianName;
     }
 
-    public String getGuardianContact() {
-        return guardianContact;
+    public String getGuardianEmail() {
+        return guardianEmail;
     }
 
-    public void setGuardianContact(String guardianContact) {
-        this.guardianContact = guardianContact;
+    public void setGuardianEmail(String guardianEmail) {
+        this.guardianEmail = guardianEmail;
+    }
+
+    public String getGuardianPhone() {
+        return guardianPhone;
+    }
+
+    public void setGuardianPhone(String guardianPhone) {
+        this.guardianPhone = guardianPhone;
     }
 
     public Integer getEnrollmentNumber() {
