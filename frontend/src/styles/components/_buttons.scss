@@ -1,3 +1,6 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+
 .btn {
   border:none;
   padding:.75rem 1rem;

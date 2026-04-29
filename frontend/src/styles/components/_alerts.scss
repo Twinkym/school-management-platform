@@ -1,3 +1,6 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+
 .alert {
   padding: 1rem;
   border-radius: $radius-md;

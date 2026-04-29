@@ -1,6 +1,9 @@
 package com.kdtech.gestion_escolar.service;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+
+import com.kdtech.gestion_escolar.exception.ResourceNotFoundException;
 import com.kdtech.gestion_escolar.model.Teacher;
 import com.kdtech.gestion_escolar.repository.TeacherRepository;
 import java.util.List;
@@ -19,27 +22,28 @@ public class TeacherService {
         return repository.findAll();
     }
 
-    public Teacher save(Teacher teacher) {
+    public Teacher save(@NonNull Teacher teacher) {
         return repository.save(teacher);
     }
 
-    public Teacher update(Teacher teacher) {
-        if (teacher.getId() == null || !repository.existsById(teacher.getId())) {
-            throw new IllegalArgumentException("Teacher not found");
+    public Teacher update(@NonNull Teacher teacher) {
+
+        Long id = teacher.getId();
+
+        if (id == null || !repository.existsById(id)) {
+            throw new ResourceNotFoundException("Teacher With id: " + id + " not found");
         }
         return repository.save(teacher);
     }
 
-    public Teacher findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Teacher not found"));
+    public Teacher findById(@NonNull Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Teacher With id: " + id + " not found"));
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(@NonNull Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Teacher With id: " + id + " not found");
+        }
         repository.deleteById(id);
-    }
-
-    public Teacher delete(Teacher teacher) {
-        repository.delete(teacher);
-        return teacher;
     }
 }

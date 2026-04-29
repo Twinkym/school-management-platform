@@ -1,3 +1,6 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+
 .table {
   width:100%;
   border-collapse:collapse;

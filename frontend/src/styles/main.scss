@@ -9,6 +9,7 @@
 @use 'base/animations';
 
 @use 'layout/grid';
+@use 'layout/container';
 
 @use 'components/buttons';
 @use 'components/forms';
@@ -16,7 +17,9 @@
 @use 'components/tables';
 @use 'components/navbar';
 @use 'components/footer';
+@use 'components/cards';
 
 @use 'pages/students';
 @use 'pages/teachers';
 @use 'pages/dashboard';
+@use 'pages/home';

@@ -1,0 +1,22 @@
+.dashboard{
+  padding:3rem 2rem;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.5rem;
+  margin:2rem 0;
+}
+
+.stat-box{
+  padding:2rem;
+  border:1px solid #e5e7eb;
+  border-radius:1rem;
+  background:white;
+}
+
+.quick-actions{
+  display:flex;
+  gap:1rem;
+}

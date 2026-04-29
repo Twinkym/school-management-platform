@@ -1,0 +1,148 @@
+body {
+  font-family: Inter, system-ui, sans-serif;
+  color: #0f172a;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.btn {
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.btn--primary {
+  background: #2563eb;
+  color: white;
+}
+.btn--danger {
+  background: #dc2626;
+  color: white;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 0.7rem;
+  animation: fadeIn 0.3s ease;
+}
+.alert--success {
+  background: #dcfce7;
+  color: #166534;
+}
+.alert--danger {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+.table th {
+  text-align: left;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #111827;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar_menu {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.home {
+  padding: 3rem 2rem;
+}
+
+.hero {
+  text-align: center;
+  max-width: 900px;
+  margin: auto auto 4rem;
+}
+
+.hero__tag {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: #eef2ff;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: #6b7280;
+  max-width: 650px;
+  margin: auto;
+}
+
+.hero__actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.stats,
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stats-card,
+.card {
+  padding: 2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  background: white;
+}
+
+/*# sourceMappingURL=main.css.map */

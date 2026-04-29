@@ -1,5 +1,6 @@
 package com.kdtech.gestion_escolar.controller;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,19 +31,19 @@ public class TeacherController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Teacher teacher) {
+    public String save(@ModelAttribute @NonNull Teacher teacher) {
         service.save(teacher);
         return "redirect:/teachers";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable @NonNull Long id, Model model) {
         model.addAttribute("teacher", service.findById(id));
         return "teachers/form";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable @NonNull Long id) {
         service.deleteById(id);
         return "redirect:/teachers";
     }

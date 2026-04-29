@@ -2,8 +2,11 @@ package com.kdtech.gestion_escolar.service;
 
 import java.util.List;
 
+import com.kdtech.gestion_escolar.exception.ResourceNotFoundException;
 import com.kdtech.gestion_escolar.model.Student;
 import com.kdtech.gestion_escolar.repository.StudentRepository;
+
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,27 +22,28 @@ public class StudentService {
         return repository.findAll();
     }
 
-    public Student save(Student student) {
+    public Student save(@NonNull Student student) {
         return repository.save(student);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(@NonNull Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Student With id: " + id + " not found");
+        }
         repository.deleteById(id);
     }
 
-    public Student delete(Student student) {
-        repository.delete(student);
-        return student;
-    }
+    public Student update(@NonNull Student student) {
 
-    public Student update(Student student) {
-        if (student.getId() == null || !repository.existsById(student.getId())) {
-            throw new IllegalArgumentException("Student not found");
+        Long id = student.getId();
+
+        if (id == null || !repository.existsById(id)) {
+            throw new ResourceNotFoundException("Student With id: " + id + " not found");
         }
         return repository.save(student);
     }
 
-    public Student findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Student not found"));
+    public Student findById(@NonNull Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Student With id: " + id + " not found"));
     }
 }

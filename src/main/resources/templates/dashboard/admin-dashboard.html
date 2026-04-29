@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDTech School Platform</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+
+<body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <main class="dashboard">
+
+        <h1>Admin Dashboard</h1>
+
+        <section class="stats-grid">
+
+            <article class="stat-box">
+                <h2 th:text="${totalStudents}"></h2>
+                <p>Total Students</p>
+            </article>
+
+            <article class="stat-box">
+                <h2 th:text="${totalTeachers}"></h2>
+                <p>Total Teachers</p>
+            </article>
+
+            <article class="stat-box">
+                <h2>Online</h2>
+                <p>System Status</p>
+            </article>
+
+        </section>
+
+        <section class="quick-actions">
+
+            <a th:href="@{/students/new}" class="btn">
+                Add Student
+            </a>
+
+            <a th:href="@{/teachers/new}" class="btn">
+                Add Teacher
+            </a>
+
+        </section>
+
+    </main>
+
+    <div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

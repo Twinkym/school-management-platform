@@ -1,6 +1,9 @@
+@use '../abstracts/colors' as *;
+@use '../abstracts/variables' as *;
+
 body {
   font-family: Inter, system-ui, sans-serif;
-  color: $text;
+  color:$text;
 }
 
 h1,h2,h3 {

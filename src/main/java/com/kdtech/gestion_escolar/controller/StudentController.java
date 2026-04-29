@@ -2,6 +2,8 @@ package com.kdtech.gestion_escolar.controller;
 
 import com.kdtech.gestion_escolar.model.Student;
 import com.kdtech.gestion_escolar.service.StudentService;
+
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +32,7 @@ public class StudentController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editForm(@PathVariable Long id, Model model) {
+    public String editForm(@PathVariable @NonNull Long id, Model model) {
         model.addAttribute("student", service.findById(id));
         return "students/form";
     }
@@ -49,7 +51,7 @@ public class StudentController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable @NonNull Long id, RedirectAttributes redirectAttributes) {
         service.deleteById(id);
         redirectAttributes.addFlashAttribute("success", "Student deleted successfully.");
         return "redirect:/students";
